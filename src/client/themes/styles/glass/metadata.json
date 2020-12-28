@@ -1,0 +1,10 @@
+{
+  "name": "glass",
+  "title": "Glass",
+  "style": {
+    "window": {
+      "margin": "3em",
+      "border": ".4em"
+    }
+  }
+}

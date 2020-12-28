@@ -1,0 +1,16 @@
+{
+  "className":  "EXAMPLEExtension",
+  "type":       "extension",
+  "conf": [
+  ],
+  "main": {
+    "node": "server/main.js",
+    "php": "server/main.php"
+  },
+  "preload": [
+    {"src": "main.js", "type": "javascript"}
+  ]
+}
+
+
+

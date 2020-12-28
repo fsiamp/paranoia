@@ -1,0 +1,38 @@
+<application-window data-id="PreviewWindow">
+
+  <gui-vbox>
+    <!-- MENU BAR -->
+    <gui-vbox-container data-grow="0" data-shrink="1" data-basis="auto">
+      <gui-menu-bar>
+
+        <gui-menu-bar-entry data-label="LBL_FILE">
+          <gui-menu data-id="SubmenuFile">
+            <gui-menu-entry data-id="MenuOpen" data-label="LBL_OPEN"></gui-menu-entry>
+            <gui-menu-entry data-id="MenuOpenLocation" data-label="LBL_OPEN_LOCATION"></gui-menu-entry>
+            <gui-menu-entry data-id="MenuClose" data-label="LBL_CLOSE"></gui-menu-entry>
+          </gui-menu>
+        </gui-menu-bar-entry>
+
+      </gui-menu-bar>
+    </gui-vbox-container>
+
+    <!-- TOOLBAR -->
+    <gui-vbox-container data-grow="0" data-shrink="1" data-basis="auto" data-id="Toolbar">
+      <gui-toolbar>
+        <gui-button data-id="ZoomOriginal" data-icon="stock://16x16/actions/zoom-original.png"></gui-button>
+        <gui-button data-id="ZoomFit" data-icon="stock://16x16/actions/zoom-fit-best.png"></gui-button>
+        <gui-button data-id="ZoomOut" data-icon="stock://16x16/actions/zoom-out.png"></gui-button>
+        <gui-button data-id="ZoomIn" data-icon="stock://16x16/actions/zoom-in.png"></gui-button>
+      </gui-toolbar>
+    </gui-vbox-container>
+
+    <!-- CONTENT -->
+    <gui-vbox-container data-grow="1" data-shrink="0" data-basis="auto" data-fill="true">
+      <gui-container data-id="Content">
+      </gui-container>
+    </gui-vbox-container>
+
+  </gui-vbox>
+
+
+</application-window>

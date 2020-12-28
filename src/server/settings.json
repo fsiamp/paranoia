@@ -1,0 +1,199 @@
+{
+    "authenticator": "demo",
+    "storage": "demo",
+    "tz": "",
+    "overlays": {},
+    "vfs": {
+        "mounts": {
+            "home": "%DROOT%/vfs/home/%USERNAME%",
+            "osjs": {
+                "ro": true,
+                "destination": "%DROOT%/dist"
+            },
+            "shared": "%DROOT%/vfs/public"
+        },
+        "groups": {
+            "shared": []
+        },
+        "maxuploadsize": 2097152
+    },
+    "api": {
+        "defaultGroups": [
+            "api",
+            "application",
+            "upload",
+            "fs"
+        ],
+        "groups": {
+            "users": "admin",
+            "curl": "curl",
+            "application": "application",
+            "fs": "fs"
+        }
+    },
+    "proxies": {
+        "http-bind-jabber/": "http://localhost:5280/http-bind/"
+    },
+    "http": {
+        "mode": "http",
+        "connection": "http",
+        "hostname": null,
+        "port": 8000,
+        "compression": {
+            "memLevel": 8,
+            "level": -1
+        },
+        "cache": {
+            "static": {
+                "Cache-Control": "private, max-age=86400000"
+            }
+        },
+        "session": {
+            "module": "memory",
+            "secret": "YOU SHOULD GENERATE YOUR OWN KEY",
+            "name": null,
+            "options": {
+                "memory": {},
+                "file": {
+                    "path": "/Volumes/FANIS/SOFTWARE/paranoia/src/server/sessions"
+                }
+            },
+            "cookie": {
+                "sameSite": null,
+                "domain": null,
+                "proxy": null,
+                "maxAge": 86400000,
+                "httpOnly": true,
+                "path": "/"
+            }
+        },
+        "ws": {
+            "port": "upgrade",
+            "path": ""
+        },
+        "cert": {
+            "path": null,
+            "name": "localhost",
+            "options": {
+                "requestCert": false,
+                "rejectUnauthorized": false
+            }
+        }
+    },
+    "modules": {
+        "auth": {
+            "pam": {
+                "groups": "/etc/osjs/groups.json",
+                "blacklist": "/etc/osjs/blacklist.json"
+            },
+            "shadow": {
+                "groups": "/etc/osjs/groups.json",
+                "blacklist": "/etc/osjs/blacklist.json"
+            },
+            "database": {
+                "driver": "mysql",
+                "sqlite": {
+                    "database": "/Volumes/FANIS/SOFTWARE/paranoia/src/server/authstorage.sqlite"
+                },
+                "mysql": {
+                    "host": "localhost",
+                    "user": "osjs",
+                    "password": "osjs",
+                    "database": "osjs"
+                }
+            }
+        },
+        "storage": {
+            "system": {
+                "settings": "/home/%USERNAME%/.osjs/settings.json"
+            },
+            "database": {
+                "driver": "mysql",
+                "sqlite": {
+                    "database": "/Volumes/FANIS/SOFTWARE/paranoia/src/server/authstorage.sqlite"
+                },
+                "mysql": {
+                    "host": "localhost",
+                    "user": "osjs",
+                    "password": "osjs",
+                    "database": "osjs"
+                }
+            }
+        }
+    },
+    "mimes": {
+        ".bmp": "image/bmp",
+        ".css": "text/css",
+        ".gif": "image/gif",
+        ".htm": "text/html",
+        ".html": "text/html",
+        ".jpg": "image/jpeg",
+        ".jpeg": "image/jpeg",
+        ".js": "application/javascript",
+        ".json": "application/json",
+        ".lua": "application/x-lua",
+        ".sh": "application/x-shellscript",
+        ".c": "text/x-c",
+        ".cpp": "text/x-cplusplus",
+        ".cc": "text/x-cplusplus",
+        ".otf": "font/opentype",
+        ".ttf": "font/opentype",
+        ".woff": "application/font-woff",
+        ".png": "image/png",
+        ".zip": "application/zip",
+        ".aac": "audio/aac",
+        ".mp4": "video/mp4",
+        ".m4a": "audio/mp4",
+        ".mp1": "audio/mpeg",
+        ".mp2": "audio/mpeg",
+        ".mp3": "audio/mpeg",
+        ".mpg": "audio/mpeg",
+        ".mpeg": "audio/mpeg",
+        ".oga": "audio/ogg",
+        ".ogg": "audio/ogg",
+        ".wav": "audio/wav",
+        ".webm": "video/webm",
+        ".m4v": "video/mp4",
+        ".ogv": "video/ogg",
+        ".avi": "video/x-ms-video",
+        ".flv": "video/x-flv",
+        ".mkv": "video/x-matroska",
+        ".py": "application/x-python",
+        ".xml": "text/xml",
+        ".md": "text/plain",
+        ".txt": "text/plain",
+        ".log": "text/plain",
+        ".doc": "text/plain",
+        ".pdf": "application/pdf",
+        ".ipk": "application/x-ipkg",
+        ".odbeat": "osjs/dbeat",
+        ".oplist": "osjs/playlist",
+        ".odoc": "osjs/document",
+        ".odraw": "osjs/draw",
+        ".oproj": "osjs/project",
+        "default": "application/octet-stream"
+    },
+    "broadway": {
+        "enabled": false,
+        "defaults": {
+            "env": {
+                "BROADWAY_DISPLAY": ":5",
+                "DISPLAY": ":0",
+                "XAUTHORITY": "~/.Xauthority",
+                "GDK_BACKEND": "broadway",
+                "UBUNTU_MENUPROXY": "",
+                "LIBOVERLAY_SCROLLBAR": "0"
+            },
+            "spawner": {
+                "host": "localhost",
+                "port": 9000,
+                "uri": ""
+            },
+            "connection": {
+                "host": "localhost",
+                "port": 8085,
+                "uri": "socket-bin"
+            }
+        }
+    }
+}

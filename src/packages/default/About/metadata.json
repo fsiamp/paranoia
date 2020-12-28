@@ -1,0 +1,50 @@
+{
+  "className": "ApplicationAbout",
+  "name": "About Paranoia",
+  "description": "About Paranoia",
+  "names": {
+    "bg_BG": " За Paranoia",
+    "de_DE": "Über Paranoia",
+    "fr_FR": "À propos d'Paranoia",
+    "it_IT": "Informazioni su Paranoia",
+    "ko_KR": "Paranoia에 대하여",
+    "nl_NL": "Over Paranoia",
+    "no_NO": "Om Paranoia",
+    "pl_PL": "o Paranoia",
+    "ru_RU": "Об Paranoia",
+    "sk_SK": "o Paranoia",
+    "tr_TR": "hakkında Paranoia",
+    "vi_VN": "Thông tin về Paranoia"
+  },
+  "descriptions": {
+    "bg_BG": "За Paranoia",
+    "de_DE": "Über Paranoia",
+    "fr_FR": "À propos d'Paranoia",
+    "it_IT": "Informazioni su Paranoia",
+    "ko_KR": "OS.js에 대하여",
+    "nl_NL": "Over Paranoia",
+    "no_NO": "Om Paranoia",
+    "pl_PL": "o Paranoia",
+    "ru_RU": "Об Paranoia",
+    "sk_SK": "o Paranoia",
+    "tr_TR": "hakkında Paranoia",
+    "vi_VN": "Thông tin về Paranoia"
+  },
+  "singular": true,
+  "category": "system",
+  "icon": "apps/help-browser.png",
+  "preload": [
+    {
+      "src": "main.js",
+      "type": "javascript"
+    },
+    {
+      "src": "main.css",
+      "type": "stylesheet"
+    },
+    {
+      "src": "scheme.html",
+      "type": "scheme"
+    }
+  ]
+}

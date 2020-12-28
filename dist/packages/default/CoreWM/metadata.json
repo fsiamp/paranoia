@@ -1,0 +1,96 @@
+{
+    "className": "CoreWM",
+    "name": "OS.js Window Manager",
+    "names": {
+        "bg_BG": "Мениджър на прозорци на OS.js",
+        "de_DE": "OS.js Fenster-Manager",
+        "es_ES": "OS.js Window Manager",
+        "fr_FR": "Gestionnaire de fenêtre OS.js",
+        "it_IT": "OS.js Gestore Finestre",
+        "ko_KR": "OS.js 윈도우 관리자",
+        "nl_NL": "OS.js venster beheer",
+        "no_NO": "OS.js Vinduhåndterer",
+        "pl_PL": "Menedżer Okien OS.js",
+        "ru_RU": "OS.js Оконный менеджер",
+        "sk_SK": "Správca Okien OS.js",
+        "tr_TR": "OS.js Pencere Yöneticisi",
+        "vi_VN": "Quản lí cửa sổ OS.js"
+    },
+    "singular": true,
+    "type": "windowmanager",
+    "icon": "apps/preferences-system-windows.png",
+    "splash": false,
+    "main": {
+        "node": "server/main.js",
+        "php": "server/main.php"
+    },
+    "preload": [
+        {
+            "src": "scheme.html",
+            "type": "scheme"
+        },
+        {
+            "type": "javascript",
+            "src": "_app.min.js"
+        },
+        {
+            "type": "stylesheet",
+            "src": "_app.min.css"
+        }
+    ],
+    "widgets": {
+        "AnalogClock": {
+            "Name": "AnalogClock",
+            "Description": "A simple analog clock",
+            "Icon": "status/appointment-soon.png"
+        },
+        "DigitalClock": {
+            "Name": "DigitalClock",
+            "Description": "A simple digital clock",
+            "Icon": "status/appointment-soon.png"
+        }
+    },
+    "panelItems": {
+        "AppMenu": {
+            "Name": "AppMenu",
+            "Description": "Application Menu",
+            "Icon": "actions/system-run.png",
+            "HasOptions": false
+        },
+        "Buttons": {
+            "Name": "Buttons",
+            "Description": "Button Bar",
+            "Icon": "actions/window-new.png"
+        },
+        "Clock": {
+            "Name": "Clock",
+            "Description": "View the time",
+            "Icon": "status/appointment-soon.png",
+            "HasOptions": true
+        },
+        "NotificationArea": {
+            "Name": "NotificationArea",
+            "Description": "View notifications",
+            "Icon": "apps/gnome-panel-notification-area.png"
+        },
+        "Search": {
+            "Name": "Search",
+            "Description": "Perform searches",
+            "Icon": "actions/system-search.png",
+            "HasOptions": true
+        },
+        "Weather": {
+            "Name": "Weather",
+            "Description": "Weather notification",
+            "Icon": "status/weather-few-clouds.png"
+        },
+        "WindowList": {
+            "Name": "Window List",
+            "Description": "Toggle between open windows",
+            "Icon": "apps/preferences-system-windows.png"
+        }
+    },
+    "path": "default/CoreWM",
+    "build": {},
+    "repo": "default"
+}

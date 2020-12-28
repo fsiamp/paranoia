@@ -1,0 +1,78 @@
+<application-window data-id="ClockSettingsDialog">
+  <gui-vbox>
+    <gui-vbox-container data-grow="1" data-shrink="0">
+      <gui-label>Time Format String:</gui-label>
+    </gui-vbox-container>
+    <gui-vbox-container data-grow="1" data-shrink="0" data-expand="true">
+      <gui-text data-id="InputTimeFormatString">H:i:s</gui-text>
+    </gui-vbox-container>
+
+    <gui-vbox-container data-grow="1" data-shrink="0">
+      <gui-label>Tooltip Format String:</gui-label>
+    </gui-vbox-container>
+    <gui-vbox-container data-grow="1" data-shrink="0" data-expand="true">
+      <gui-text data-id="InputTooltipFormatString">l, j F Y</gui-text>
+    </gui-vbox-container>
+
+    <gui-vbox-container data-grow="1" data-shrink="0">
+      <gui-label>Interval:</gui-label>
+    </gui-vbox-container>
+    <gui-vbox-container data-grow="1" data-shrink="0" data-expand="true">
+      <gui-select data-id="InputInterval">
+        <gui-select-option data-value="1000">1 second</gui-select-option>
+        <gui-select-option data-value="60000">1 minute</gui-select-option>
+        <gui-select-option data-value="3600000">1 hour</gui-select-option>
+      </gui-select>
+    </gui-vbox-container>
+
+    <gui-vbox-container data-grow="1" data-shrink="0">
+      <gui-label>UTC Time:</gui-label>
+    </gui-vbox-container>
+    <gui-vbox-container data-grow="1" data-shrink="0">
+      <gui-checkbox data-id="InputUseUTC"></gui-checkbox>
+    </gui-vbox-container>
+
+    <gui-vbox-container data-shrink="1" data-align="end">
+      <gui-hbox>
+        <gui-hbox-container data-grow="0" data-shrink="1">
+          <gui-button data-id="ButtonApply">Apply</gui-button>
+          <gui-button data-id="ButtonCancel">Cancel</gui-button>
+        </gui-hbox-container>
+      </gui-hbox>
+    </gui-vbox-container>
+  </gui-vbox>
+</application-window>
+
+<application-window data-id="IconViewShortcutDialog">
+  <gui-vbox>
+    <gui-vbox-container data-grow="0" data-shrink="0">
+      <gui-label>Launch:</gui-label>
+    </gui-vbox-container>
+    <gui-vbox-container data-grow="0" data-shrink="0" data-expand="true">
+      <gui-text data-id="InputShortcutLaunch">ApplicationClassName</gui-text>
+    </gui-vbox-container>
+
+    <gui-vbox-container data-grow="0" data-shrink="0">
+      <gui-label>Label:</gui-label>
+    </gui-vbox-container>
+    <gui-vbox-container data-grow="0" data-shrink="0" data-expand="true">
+      <gui-text data-id="InputShortcutLabel"></gui-text>
+    </gui-vbox-container>
+
+    <gui-vbox-container data-grow="0" data-shrink="0">
+      <gui-label>Launch arguments:</gui-label>
+    </gui-vbox-container>
+    <gui-vbox-container data-grow="0" data-shrink="0" data-expand="true">
+      <gui-text data-id="InputTooltipFormatString"></gui-text>
+    </gui-vbox-container>
+
+    <gui-vbox-container data-shrink="1" data-align="end">
+      <gui-hbox>
+        <gui-hbox-container data-grow="0" data-shrink="1">
+          <gui-button data-id="ButtonApply">Apply</gui-button>
+          <gui-button data-id="ButtonCancel">Cancel</gui-button>
+        </gui-hbox-container>
+      </gui-hbox>
+    </gui-vbox-container>
+  </gui-vbox>
+</application-window>

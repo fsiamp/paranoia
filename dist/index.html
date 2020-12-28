@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+
+    <!--
+    OS.js - JavaScript Cloud/Web Desktop Platform
+
+    Copyright (c) 2011-2017, Anders Evenrud <andersevenrud@gmail.com>
+    All rights reserved.
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met: 
+
+    1. Redistributions of source code must retain the above copyright notice, this
+       list of conditions and the following disclaimer. 
+    2. Redistributions in binary form must reproduce the above copyright notice,
+       this list of conditions and the following disclaimer in the documentation
+       and/or other materials provided with the distribution. 
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+    ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+    WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+    DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+    ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+    (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+    ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+    (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+    @author  Anders Evenrud <andersevenrud@gmail.com>
+    @licence Simplified BSD License
+    -->
+    <meta name="description" content="OS.js - JavaScript Cloud/Web Desktop Platform" />
+    <meta name="keywords" content="OS.js,Web Desktop,Cloud Desktop,JavaScript OS" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Paranoia</title>
+    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="favicon.ico" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="apple-touch-icon-precomposed" href="favicon.png" />
+
+    <!-- Styles -->
+    <link type="text/css" rel="stylesheet" href="themes/fonts.min.css" />
+    <link type="text/css" rel="stylesheet" href="osjs.min.css" />
+
+    <!-- Scripts -->
+    <script type="text/javascript" charset="utf-8" src="settings.js"></script>
+    <script type="text/javascript" charset="utf-8" src="osjs.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="locales.min.js"></script>
+
+  </head>
+  <body>
+
+    <div id="LoadingScreen">
+      <img alt="" src="splash.png" />
+    </div>
+
+    <style type="text/css">
+
+#LoadingScreen {
+  position : absolute;
+  width : 320px;
+  height : 182px;
+  top : 50%;
+  left : 50%;
+  margin-top : -91px;
+  margin-left : -160px;
+  z-index : 999;
+}
+
+/*
+  #LoadingScreen span {
+    color : #fff;
+    font-family : sans-serif, Arial;
+    font-size : 30px;
+    display : block;
+  }
+  */
+
+#LoadingScreen application-splash {
+  position : absolute;
+  height : 30px;
+  width : auto;
+  top : auto;
+  left : 0;
+  right : 0;
+  bottom : -40px;
+  margin : 0;
+  background : #fff;
+  z-index : 99999999;
+}
+  #LoadingScreen application-splash > span {
+    display : none;
+  }
+  #LoadingScreen application-splash > gui-progress-bar {
+    top : 5px;
+    left : 5px;
+    right : 5px;
+    bottom : 5px;
+    height : auto;
+  }
+    #LoadingScreen application-splash > gui-progress-bar:before {
+      border : 1px solid #ccc;
+      background : #ddd;
+    }
+    #LoadingScreen application-splash > gui-progress-bar > span {
+      display : none;
+    }
+    #LoadingScreen application-splash > gui-progress-bar > div {
+      background : rgb(87, 42, 121);
+    }
+
+    </style>
+
+
+
+    <div id="Login">
+      <form method="post" id="LoginForm">
+        <div>
+          <label for="LoginUsername">Username</label>
+          <input type="text" name="LoginUsername" id="LoginUsername" value="" placeholder="Username" />
+        </div>
+        <div>
+          <label for="LoginPassword">Password</label>
+          <input type="password" name="LoginPassword" id="LoginPassword" value="" placeholder="Password" />
+        </div>
+        <div class="Submit">
+          <input type="submit" name="LoginSubmit" id="LoginSubmit" value="Login" />
+        </div>
+      </form>
+    </div>
+
+    <style type="text/css">
+
+#Login {
+  background : #fff;
+  width : 400px;
+  height : 230px;
+  padding : 20px;
+  position : absolute;
+  left : 50%;
+  top : 50%;
+  z-index : 9999;
+  margin-left : -200px;
+  margin-top : -155px;
+  border : 4px solid rgba(0, 0, 0, .1);
+  -webkit-box-shadow: 0 0 5px 4px rgba(0,0,0,0.15);
+  -moz-box-shadow: 0 0 5px 4px rgba(0,0,0,0.15);
+  box-shadow: 0 0 5px 4px rgba(0,0,0,0.15);
+  box-sizing : border-box;
+
+  display : none;
+}
+  #LoginForm > div {
+    margin-bottom : 20px;
+  }
+  #Login label {
+    display : block;
+    font-weight : bold;
+    height : 30px;
+    line-height : 30px;
+  }
+  #Login input[type=text],
+  #Login input[type=password] {
+    display : block;
+    width : 100%;
+    height : 24px;
+    padding : 4px;
+    line-height : 12px;
+    box-sizing : border-box;
+  }
+  #Login input[type=submit] {
+    height : 40px;
+    padding : 10px;
+    padding-left : 20px;
+    padding-right : 20px;
+    box-sizing : border-box;
+    background : rgba(0, 0, 0, .1);
+    border : 0 none;
+    cursor : pointer;
+  }
+  #Login .Submit {
+    text-align : right;
+  }
+
+    </style>
+
+
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        if ( typeof OSjs !== 'object' || typeof OSjs.Bootstrap !== 'object' ) {
+          alert('OS.js was not loaded, most likely due to network or parsing error(s).');
+          return;
+        }
+
+        OSjs.Bootstrap.run({});
+      });
+      document.addEventListener('unload', function() {
+        try {
+          OSjs.Bootstrap.stop();
+        } catch ( e ) {
+          console.warn(e.stack, e);
+        }
+      });
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,491 @@
+@charset "UTF-8";
+/**
+ * OS.js - JavaScript Cloud/Web Desktop Platform
+ *
+ * Copyright (c) 2011-2017, Anders Evenrud <andersevenrud@gmail.com>
+ * All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met: 
+ * 
+ * 1. Redistributions of source code must retain the above copyright notice, this
+ *    list of conditions and the following disclaimer. 
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution. 
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * @author  Anders Evenrud <andersevenrud@gmail.com>
+ * @licence Simplified BSD License
+ */
+
+html, body {
+  width : 100vw;
+  height : 100vh;
+  overflow : hidden;
+  position : fixed;
+}
+
+body {
+  margin : 0;
+  padding : 0;
+  background-color : #572a79;
+}
+
+html {
+  touch-action:none;
+}
+
+body, input, button, textarea, label, select {
+  font-size : 12px;
+  font-family : Sans-serif, Arial;
+}
+
+/**
+ * ===========================================================================
+ *                           APPLICATION SPLASH
+ * ===========================================================================
+ */
+
+application-splash {
+  display : block;
+  position : absolute;
+  top : 50%;
+  left : 50%;
+  width : 300px;
+  height : 55px;
+  margin-left : -150px;
+  margin-top : -28px;
+  z-index : 99999998;
+}
+  application-splash > img {
+    display : block;
+    position : absolute;
+    top : 5px;
+    left : 5px;
+    width : 16px;
+    height : 16px;
+  }
+  application-splash > span {
+    display : block;
+    position : absolute;
+    top : 5px;
+    left : 26px;
+    height : 16px;
+    line-height : 16px;
+  }
+  application-splash > gui-progress-bar {
+    position : absolute;
+    bottom : 5px;
+    left : 5px;
+    right : 5px;
+  }
+
+/**
+ * ===========================================================================
+ *                                 MISC
+ * ===========================================================================
+ */
+
+body[data-attention="true"]:after {
+  content : '';
+  display : block;
+  position : fixed;
+  top : 0;
+  left : 0;
+  right : 0;
+  bottom : 0;
+  z-index : 1;
+}
+
+/**
+ * ===========================================================================
+ *                              DEBUG NOTICE
+ * ===========================================================================
+ */
+
+#DebugNotice {
+  position : absolute;
+  bottom : .5em;
+  right : .5em;
+  font-family : sans-serif;
+  font-size : 1em;
+  color : rgba(250, 250, 250, .8);
+  text-shadow: 0 0 2px rgba(34, 34, 34, .5);
+  text-align : right;
+  line-height : 1.3;
+  z-index : 2;
+  cursor : default;
+}
+
+  #DebugNotice a {
+    color : inherit;
+    text-decoration : underline;
+    font-weight : normal;
+    cursor : pointer;
+  }
+
+/**
+ * ===========================================================================
+ *                                WINDOW
+ * ===========================================================================
+ */
+
+.application-window-button-entry,
+application-window,
+application-window-top,
+application-window-content,
+application-window-icon,
+application-window-title,
+application-window-loading,
+application-window-disabled,
+application-window-loading-indicator {
+  display : block;
+}
+
+application-window {
+  position : absolute;
+  top : 0;
+  left : 0;
+  overflow : visible;
+}
+application-window:before {
+  content : '';
+  position : absolute;
+  top : 0;
+  left : 0;
+  right : 0;
+  bottom : 0;
+}
+
+application-window-top {
+  position : absolute;
+  top : 0;
+  left : 0;
+  right : 0;
+  height : 1.666em;
+  z-index : 5;
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-wrap: nowrap;
+     -moz-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+       -o-flex-wrap: nowrap;
+          flex-wrap: nowrap;
+}
+  application-window-top > * {
+    min-width : 1em;
+    min-height : 1em;
+
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-flex: 0 0 auto;
+       -moz-flex: 0 0 auto;
+        -ms-flex: 0 0 auto;
+         -o-flex: 0 0 auto;
+            flex: 0 0 auto;
+  }
+
+application-window-icon {
+  text-align : center;
+  position : relative;
+  background-position : center center;
+  background-repeat : no-repeat;
+  background-size : 16px;
+}
+
+application-window-title {
+  height : 100%;
+  z-index : 1;
+  overflow : hidden;
+  white-space : nowrap;
+  line-height : 1.666em;
+  display : block;
+
+  -webkit-text-overflow: ellipsis;
+     -moz-text-overflow: ellipsis;
+      -ms-text-overflow: ellipsis;
+       -o-text-overflow: ellipsis;
+          text-overflow: ellipsis;
+
+  -webkit-flex: 1 1 auto;
+     -moz-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+       -o-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
+
+.application-window-button-entry {
+  padding : 0;
+  margin : 0;
+  height : 100%;
+  text-align : center;
+  position : relative;
+  display : none;
+}
+
+  application-window[data-allow-maximize="true"] application-window-button-maximize {
+    display : block;
+  }
+  application-window[data-allow-minimize="true"] application-window-button-minimize {
+    display : block;
+  }
+  application-window[data-allow-close="true"] application-window-button-close {
+    display : block;
+  }
+
+application-window-content {
+  position : absolute;
+  top : 0;
+  left : 0;
+  right : 0;
+  bottom : 0;
+  /*overflow : hidden;*/
+  z-index : 1;
+}
+
+application-window-resize {
+  position : absolute;
+  top : 0;
+  left : 0;
+  right : 0;
+  bottom : 0;
+  z-index : -1;
+}
+application-window[data-allow-resize="false"] > application-window-resize {
+  display : none;
+  cursor : default !important;
+}
+  application-window-resize-handle {
+    position : absolute;
+    -webkit-touch-callout: none;
+      -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+  }
+  application-window-resize-handle[data-direction="n"] {
+    cursor : n-resize;
+    top : 0;
+    height : 30px;
+    left : 20px;
+    right : 20px;
+  }
+  application-window-resize-handle[data-direction="s"] {
+    cursor : s-resize;
+    bottom : 0;
+    height : 30px;
+    left : 20px;
+    right : 20px;
+  }
+  application-window-resize-handle[data-direction="w"] {
+    cursor : w-resize;
+    left : 0;
+    width : 30px;
+    top : 20px;
+    bottom : 20px;
+  }
+  application-window-resize-handle[data-direction="e"] {
+    cursor : e-resize;
+    right : 0;
+    width : 30px;
+    top : 20px;
+    bottom : 20px;
+  }
+
+  application-window-resize-handle[data-direction="sw"] {
+    cursor : sw-resize;
+    bottom : 0;
+    left : 0;
+    height : 30px;
+    width : 30px;
+  }
+  application-window-resize-handle[data-direction="se"] {
+    cursor : se-resize;
+    bottom : 0;
+    right : 0;
+    height : 30px;
+    width : 30px;
+  }
+  application-window-resize-handle[data-direction="nw"] {
+    cursor : nw-resize;
+    top : 0;
+    left : 0;
+    height : 30px;
+    width : 30px;
+  }
+  application-window-resize-handle[data-direction="ne"] {
+    cursor : ne-resize;
+    top : 0;
+    right : 0;
+    height : 30px;
+    width : 30px;
+  }
+
+application-window-loading {
+  position : absolute;
+  top : 0;
+  left : 0;
+  right : 0;
+  bottom : 0;
+  z-index : 999999;
+}
+
+  application-window-loading-indicator {
+    position : absolute;
+    left : 50%;
+    top : 50%;
+  }
+
+application-window-disabled {
+  position : absolute;
+  top : 0;
+  left : 0;
+  right : 0;
+  bottom : 0;
+  z-index : 999998;
+}
+
+application-window[data-dnd-state="true"]:after {
+  content : '';
+  position : absolute;
+  top : 0;
+  left : 0;
+  bottom : 0;
+  right : 0;
+  /*z-index : 10;*/
+}
+
+application-window[data-hint="resizing"] iframe,
+application-window[data-hint="moving"] iframe {
+  pointer-events: none;
+}
+
+application-window-warning  {
+  position : absolute;
+  top : 0;
+  left : 0;
+  right : 0;
+  height : 2.5em;
+  line-height : 1.666;
+  margin : 0.333em;
+  border : 1px solid transparent;
+  z-index : 99999;
+  box-sizing : border-box;
+}
+  application-window-warning > div:nth-child(1) {
+    position : absolute;
+    top : 0;
+    right : 0;
+    bottom : 0;
+    padding : 0.333em;
+    box-sizing : border-box;
+  }
+  application-window-warning > div:nth-child(2) {
+    position : absolute;
+    top : 0;
+    left : 0;
+    right : 1.666em;
+    bottom : 0;
+    padding : 0.333em;
+    overflow : hidden;
+    box-sizing : border-box;
+  }
+
+/**
+ * Dialog window defaults
+ */
+application-window.DialogWindow gui-label label {
+  white-space : inherit;
+}
+application-window.DialogWindow gui-button-bar gui-button {
+  min-width : 6.666em;
+}
+application-window.DialogWindow gui-label[data-id="Message"] span {
+  font-weight : bold;
+}
+
+/**
+ * ===========================================================================
+ *                          IFRAME APPLICATIONS
+ * ===========================================================================
+ */
+
+.IFrameApplicationWindow application-window-content {
+  background : #000;
+}
+.IframeApplicationFrame {
+  box-sizing : border-box;
+  margin : 0;
+  padding : 0;
+  width : 100%;
+  height : 100%;
+  border : 0 none;
+  outline : 0 none;
+  position : absolute;
+  top : 0;
+  left : 0;
+  right : 0;
+  bottom : 0;
+}
+
+application-window[data-focused="false"] iframe {
+  pointer-events : none;
+}
+
+/**
+ * ===========================================================================
+ *                               RESPONSIVE
+ * ===========================================================================
+ */
+@media all and (max-width: 1280px) {
+  html, body {
+    height : 100%;
+  }
+}
+
+@media all and (max-width: 800px) {
+
+  body {
+    overflow : hidden;
+    font-size : 10px;
+  }
+
+  application-window {
+    width : auto !important;
+    height : auto !important;
+    left : 0 !important;
+    right : 0 !important;
+    bottom : 0 !important;
+    top : 0 !important;
+  }
+
+  application-window-button-maximize,
+  application-window-button-minimize {
+    display : none !important;
+  }
+
+  application-window-content {
+    overflow : auto !important;
+  }
+
+}

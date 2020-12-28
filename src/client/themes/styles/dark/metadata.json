@@ -1,0 +1,10 @@
+{
+  "name": "dark",
+  "title": "Dark",
+  "style": {
+    "window": {
+      "margin": "2.5em",
+      "border": ".25em"
+    }
+  }
+}

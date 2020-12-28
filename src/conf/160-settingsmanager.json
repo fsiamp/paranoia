@@ -1,0 +1,16 @@
+{
+  "client": {
+    "SettingsManager": {
+      "DefaultApplication": {
+        "dir": "ApplicationFileManager"
+      },
+      "SearchEngine": {
+        "applications": true,
+        "files": true,
+        "paths": [
+          "home:///"
+        ]
+      }
+    }
+  }
+}

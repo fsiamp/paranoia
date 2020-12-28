@@ -1,0 +1,232 @@
+/*!
+ * OS.js - JavaScript Cloud/Web Desktop Platform
+ *
+ * Copyright (c) 2011-2017, Anders Evenrud <andersevenrud@gmail.com>
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice, this
+ *    list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * @author  Anders Evenrud <andersevenrud@gmail.com>
+ * @licence Simplified BSD License
+ */
+(function(API, Utils, VFS, GUI) {
+  'use strict';
+
+  /////////////////////////////////////////////////////////////////////////////
+  // HELPERS
+  /////////////////////////////////////////////////////////////////////////////
+
+  function getDocument(el, iframe) {
+    iframe = iframe || el.querySelector('iframe');
+    return iframe.contentDocument || iframe.contentWindow.document;
+  }
+
+  function getDocumentData(el) {
+    try {
+      var doc = getDocument(el);
+      return doc.body.innerHTML;
+    } catch ( error ) {
+      console.error('gui-richtext', 'getDocumentData()', error.stack, error);
+    }
+    return '';
+  }
+
+  function destroyFixInterval(el) {
+    el._fixTry = 0;
+    el._fixInterval = clearInterval(el._fixInterval);
+  }
+
+  function createFixInterval(el, doc, text) {
+    if ( el._fixTry > 10 ) {
+      el._fixTry = 0;
+      return;
+    }
+
+    el._fixInterval = setInterval(function() {
+      try {
+        if ( text ) {
+          doc.body.innerHTML = text;
+        }
+        destroyFixInterval(el);
+      } catch ( error ) {
+        console.warn('gui-richtext', 'setDocumentData()', error.stack, error, '... trying again');
+      }
+      el._fixTry++;
+    }, 100);
+  }
+
+  function setDocumentData(el, text) {
+    destroyFixInterval(el);
+
+    text = text || '';
+
+    var wm = OSjs.Core.getWindowManager();
+    var theme = (wm ? wm.getSetting('theme') : 'default') || 'default';
+    var themeSrc = OSjs.API.getThemeCSS(theme);
+
+    var editable = el.getAttribute('data-editable');
+    editable = editable === null || editable === 'true';
+
+    function onMouseDown(ev) {
+      function insertTextAtCursor(text) {
+        var sel, range;
+        if (window.getSelection) {
+          sel = window.getSelection();
+          if (sel.getRangeAt && sel.rangeCount) {
+            range = sel.getRangeAt(0);
+            range.deleteContents();
+            range.insertNode( document.createTextNode(text) );
+          }
+        } else if (document.selection && document.selection.createRange) {
+          document.selection.createRange().text = text;
+        }
+      }
+
+      if ( ev.keyCode === 9 ) {
+        /*
+        var t = ev.shiftKey ? "outdent" : "indent";
+        document.execCommand("styleWithCSS",true,null);
+        document.execCommand(t, false, null)
+        */
+        insertTextAtCursor('\u00A0');
+        ev.preventDefault();
+      }
+    }
+
+    var script = onMouseDown.toString() + ';window.addEventListener("keydown", onMouseDown)';
+
+    var template = '<!DOCTYPE html><html><head><link rel="stylesheet" type="text/css" href="' + themeSrc + '" /><script>' + script + '</script></head><body contentEditable="true"></body></html>';
+    if ( !editable ) {
+      template = template.replace(' contentEditable="true"', '');
+    }
+
+    var doc = getDocument(el);
+    doc.open();
+    doc.write(template);
+    doc.close();
+    createFixInterval(el, doc, text);
+  }
+
+  /////////////////////////////////////////////////////////////////////////////
+  // CLASSES
+  /////////////////////////////////////////////////////////////////////////////
+
+  /**
+   * Element: 'gui-richtext'
+   *
+   * "Richt text" input area.
+   *
+   * <pre><code>
+   *   getter    value   String        The value/contents
+   *   setter    value   String        The value/contents
+   * </code></pre>
+   *
+   * @constructor RichText
+   * @extends OSjs.GUI.Element
+   * @memberof OSjs.GUI.Elements
+   */
+  var GUIRichText = {
+    on: function(evName, callback, params) {
+      if ( (['selection']).indexOf(evName) !== -1 ) {
+        evName = '_' + evName;
+      }
+      Utils.$bind(this.$element, evName, callback.bind(this), params);
+      return this;
+    },
+
+    build: function() {
+      var el = this.$element;
+      var text = el.childNodes.length ? el.childNodes[0].nodeValue : '';
+
+      Utils.$empty(el);
+
+      var iframe = document.createElement('iframe');
+      iframe.setAttribute('border', 0);
+      iframe.onload = function() {
+        iframe.contentWindow.addEventListener('selectstart', function() {
+          el.dispatchEvent(new CustomEvent('_selection', {detail: {}}));
+        });
+        iframe.contentWindow.addEventListener('mouseup', function() {
+          el.dispatchEvent(new CustomEvent('_selection', {detail: {}}));
+        });
+      };
+      el.appendChild(iframe);
+
+      setTimeout(function() {
+        try {
+          setDocumentData(el, text);
+        } catch ( e ) {
+          console.warn('gui-richtext', 'build()', e);
+        }
+      }, 1);
+
+      return this;
+    },
+
+    command: function() {
+      try {
+        var doc = getDocument(this.$element);
+        if ( doc && doc.execCommand ) {
+          return doc.execCommand.apply(doc, arguments);
+        }
+      } catch ( e ) {
+        console.warn('gui-richtext call() warning', e.stack, e);
+      }
+      return this;
+    },
+
+    query: function() {
+      try {
+        var doc = getDocument(this.$element);
+        if ( doc && doc.queryCommandValue ) {
+          return doc.queryCommandValue.apply(doc, arguments);
+        }
+      } catch ( e ) {
+        console.warn('gui-richtext call() warning', e.stack, e);
+      }
+      return null;
+    },
+
+    get: function(param, value) {
+      if ( param === 'value' ) {
+        return getDocumentData(this.$element);
+      }
+      return GUI.Element.prototype.get.apply(this, arguments);
+    },
+
+    set: function(param, value) {
+      if ( param === 'value' ) {
+        setDocumentData(this.$element, value);
+        return this;
+      }
+      return GUI.Element.prototype.set.apply(this, arguments);
+    }
+  };
+
+  /////////////////////////////////////////////////////////////////////////////
+  // REGISTRATION
+  /////////////////////////////////////////////////////////////////////////////
+
+  GUI.Element.register({
+    tagName: 'gui-richtext'
+  }, GUIRichText);
+
+})(OSjs.API, OSjs.Utils, OSjs.VFS, OSjs.GUI);

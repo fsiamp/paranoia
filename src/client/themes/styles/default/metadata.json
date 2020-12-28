@@ -1,0 +1,10 @@
+{
+  "name": "default",
+  "title": "Default",
+  "style": {
+    "window": {
+      "margin": "2.5em",
+      "border": ".25em"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+@charset "UTF-8";/*!
+ * OS.js - JavaScript Cloud/Web Desktop Platform
+ *
+ * Copyright (c) 2011-2015, Anders Evenrud <andersevenrud@gmail.com>
+ * All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met: 
+ * 
+ * 1. Redistributions of source code must retain the above copyright notice, this
+ *    list of conditions and the following disclaimer. 
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution. 
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * @author  Anders Evenrud <andersevenrud@gmail.com>
+ * @licence Simplified BSD License
+ *//*!
+ * OS.js - JavaScript Cloud/Web Desktop Platform
+ *
+ * Copyright (c) 2011-2015, Anders Evenrud <andersevenrud@gmail.com>
+ * All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met: 
+ * 
+ * 1. Redistributions of source code must retain the above copyright notice, this
+ *    list of conditions and the following disclaimer. 
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution. 
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * @author  Anders Evenrud <andersevenrud@gmail.com>
+ * @licence Simplified BSD License
+ */.ApplicationCalculatorWindow gui-text{display:block;margin:.666em;height:4.1666em}.ApplicationCalculatorWindow gui-text>input{font-size:2.5em;font-family:Monospace;line-height:4.1666;text-align:right}.ApplicationCalculatorWindow.noop{opacity:.1}.ApplicationCalculatorWindow.NaN{-webkit-animation:CalculatorSuck 3s linear;-moz-animation:CalculatorSuck 3s linear;-ms-animation:CalculatorSuck 3s linear;-o-animation:CalculatorSuck 3s linear;animation:CalculatorSuck 3s linear}@-webkit-keyframes CalculatorSuck{100%{-webkit-transform:scale(0) rotate(360deg);transform:scale(0) rotate(360deg);-webkit-opacity:0}50%{-webkit-transform:scale(.5) rotate(180deg);transform:scale(.5) rotate(180deg)}10%{-webkit-transform:scale(1.5) rotate(0);transform:scale(1.5) rotate(0)}0%{-webkit-opacity:1}}@-moz-keyframes CalculatorSuck{100%{-moz-transform:scale(0) rotate(360deg);transform:scale(0) rotate(360deg);-moz-opacity:0}50%{-moz-transform:scale(.5) rotate(180deg);transform:scale(.5) rotate(180deg)}10%{-moz-transform:scale(1.5) rotate(0);transform:scale(1.5) rotate(0)}0%{-moz-opacity:1}}@-o-keyframes CalculatorSuck{100%{-o-transform:scale(0) rotate(360deg);transform:scale(0) rotate(360deg);-o-opacity:0}50%{-o-transform:scale(.5) rotate(180deg);transform:scale(.5) rotate(180deg)}10%{-o-transform:scale(1.5) rotate(0);transform:scale(1.5) rotate(0)}0%{-o-opacity:1}}@keyframes CalculatorSuck{100%{transform:scale(0) rotate(360deg);opacity:0}50%{transform:scale(.5) rotate(180deg)}10%{transform:scale(1.5) rotate(0)}0%{opacity:1}}
+/*# sourceMappingURL=_app.min.css.map */

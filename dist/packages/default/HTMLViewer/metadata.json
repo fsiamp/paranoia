@@ -1,0 +1,23 @@
+{
+    "className": "ApplicationHTMLViewer",
+    "name": "HTML Viewer",
+    "mime": [
+        "text\\/html"
+    ],
+    "icon": "mimetypes/text-html.png",
+    "category": "utilities",
+    "preload": [
+        {
+            "type": "javascript",
+            "src": "_app.min.js"
+        },
+        {
+            "src": "scheme.html",
+            "type": "scheme"
+        }
+    ],
+    "type": "application",
+    "path": "default/HTMLViewer",
+    "build": {},
+    "repo": "default"
+}
