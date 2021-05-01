@@ -1,4 +1,4 @@
-![alt tag](https://raw.githubusercontent.com/fsiamp/paranoia/master/src/packages/default/About/about.png)
+![alt tag](https://raw.githubusercontent.com/fsiamp/paranoia-desktop/master/src/packages/default/About/about.png)
 
 Paranoia is an open-source web desktop implementation for your browser with a fully-fledged window manager, Application APIs, GUI toolkits and filesystem abstraction.
 
@@ -6,7 +6,7 @@ The current system makes use of OS.js framework and is written in Javascript.
 
 ## Screenshot
 
-![alt tag](https://raw.githubusercontent.com/fsiamp/paranoia/master/screenshot.png)
+![alt tag](https://raw.githubusercontent.com/fsiamp/paranoia-desktop/master/screenshot.png)
 
 ## Usage
 
